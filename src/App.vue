@@ -1,18 +1,34 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<template lang="pug">
+section.wrapper
+  Tags(:tags="list")
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tags from './components/Tags.vue';
+import axios from 'axios';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      list: null
+    }
+  },
   components: {
-    HelloWorld
+    Tags
+  },
+  mounted() {
+    axios
+        .post('https://webdev.modumlab.com/api/book/categories')
+        .then(response => (this.list = response.data.data.list));
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+  .wrapper {
+    width: 70%;
+    margin: 0 auto;
+    padding: 50px 0 50px;
+  }
 </style>
