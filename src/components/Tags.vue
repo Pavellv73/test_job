@@ -1,7 +1,7 @@
 <template lang="pug">
 div.tags
   div.tags__wrapper
-    TagsItem.tags__item(v-for="item in tags" :title="item.name")
+    TagsItem.tags__item(v-for="item in tags" :title="item.name" :id="item.id")
 </template>
 
 <script>

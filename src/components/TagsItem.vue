@@ -6,7 +6,8 @@ a(href="#" alt="title") {{title}}
 export default {
   name:"TagsItem",
   props: {
-    title: String
+    title: String,
+    id: Number
   }
 }
 </script>
