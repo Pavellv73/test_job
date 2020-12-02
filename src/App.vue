@@ -1,15 +1,24 @@
 <template lang="pug">
 section.wrapper
-  Tags.wrapper__categories(:tags="categories" v-model="updateBooks")
-  Library.wrapper__books(:items="books")
-<!--  ButtonMore.wrapper__button(-->
-<!--    :onClick="showMore"-->
-<!--    v-if="this.books.length > 10"-->
-<!--  ) Загрузить ещё-->
+  Loader(v-if="isLoading")
+  Tags.wrapper__categories(
+    :tags="categories"
+    v-model="updateBooks"
+    @filter="this.getBooks"
+  )
+  Library.wrapper__books(
+    :items="books"
+    v-if="!isLoading"
+  )
+  ButtonMore.wrapper__button(
+    :onClick="showMore"
+    v-if="conterBooks > 10"
+  ) Загрузить ещё
 </template>
 
 <script>
 import axios from 'axios';
+import Loader from "@/components/Loader";
 import Tags from '@/components/Tags.vue';
 import Library from "@/components/Library";
 import ButtonMore from "@/components/ButtonMore";
@@ -20,10 +29,13 @@ export default {
     return {
       isLoading: false,
       categories: null,
-      books: null
+      books: null,
+      conterBooks: 0,
+      filter: null
     }
   },
   components: {
+    Loader,
     Tags,
     Library,
     ButtonMore
@@ -34,9 +46,10 @@ export default {
         .then(values => {
           this.categories = values[0];
           this.getBooks(values[0])
+          this.isLoading = false;
         })
         .catch(() => {
-          console.log(0);
+          console.log("error promise tags");
           this.isLoading = false;
         });
   },
@@ -54,25 +67,34 @@ export default {
       );
       return response.data.data.list;
     },
-    getBooks(tags) {
+    async getBooks(tags) {
+      console.log(tags);
       let idArray = [];
-      tags.forEach(i => {
-        idArray.push(i.id)
-      });
+      if (tags.length > 1) {
+        tags.forEach(i => {
+          idArray.push(i.id)
+        });
+      } else {
+        idArray.push(tags);
+      }
 
-      console.log(idArray);
-
-      axios
-          .post('https://webdev.modumlab.com/api/book/list', {
+      this.isLoading = true;
+      await Promise.all([axios.post('https://webdev.modumlab.com/api/book/list', {
             categories: idArray,
             page: 1
+          })])
+          .then(values => {
+            this.books = values[0].data.data.list;
+            this.conterBooks = values[0].data.data.list.length;
+            this.isLoading = false;
           })
-          .then(response => {
-            this.books = response.data.data.list;
+          .catch(() => {
+            console.log("error getBooks");
+            this.isLoading = false;
           });
     },
     showMore() {
-      console.log(this.books.length)
+      console.log(this.books);
     }
   }
 }

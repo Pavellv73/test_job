@@ -1,7 +1,12 @@
 <template lang="pug">
 div.tags
   div.tags__wrapper
-    TagsItem.tags__item(v-for="item in tags" :title="item.name" :id="item.id")
+    TagsItem.tags__item(
+      v-for="item in tags"
+      :title="item.name"
+      :id="item.id"
+      @getId="clickItem"
+    )
 </template>
 
 <script>
@@ -15,6 +20,11 @@ export default {
   components: {
     TagsItem
   },
+  methods: {
+    clickItem(id) {
+      this.$emit('filter', id);
+    }
+  }
 }
 </script>
 

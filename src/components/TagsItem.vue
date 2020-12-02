@@ -1,5 +1,7 @@
 <template lang="pug">
-a(href="#" alt="title") {{title}}
+span(
+  :class="{'.tags__item--active': isActive}"
+  @click="this.$emit('getId', id)") {{title}}
 </template>
 
 <script>
@@ -7,7 +9,8 @@ export default {
   name:"TagsItem",
   props: {
     title: String,
-    id: Number
+    id: Number,
+    isActive: Boolean
   }
 }
 </script>
