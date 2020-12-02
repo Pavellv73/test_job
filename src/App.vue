@@ -49,13 +49,13 @@ export default {
 </script>
 
 <style lang="scss">
-  .wrapper {
-    width: 70%;
-    margin: 0 auto;
-    padding: 50px 0 50px;
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+  padding: 50px 0 50px;
 
-    &__books {
-      margin-top: 20px;
-    }
+  &__books {
+    margin-top: 20px;
   }
+}
 </style>

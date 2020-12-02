@@ -19,35 +19,35 @@ export default {
 </script>
 
 <style lang="scss">
-  .tags {
-    width: 100%;
+.tags {
+  width: 100%;
 
-    &__wrapper {
-      width: 100%;
-      display: flex;
+  &__wrapper {
+    width: 100%;
+    display: flex;
+  }
+
+  &__item {
+    font: 300 16px/18px Arial, sans-serif;
+    padding: 5px 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 100px;
+    background-color: gainsboro;
+    color: white;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: hotpink;
     }
 
-    &__item {
-      font: 300 16px/18px Arial, sans-serif;
-      padding: 5px 10px;
-      margin-right: 10px;
-      text-decoration: none;
-      border-radius: 100px;
-      background-color: gainsboro;
-      color: white;
-      transition: background-color 0.3s ease;
+    &:last-child {
+      margin-right: 0;
+    }
 
-      &:hover {
-        background-color: hotpink;
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      &--active {
-        background-color: deeppink;
-      }
+    &--active {
+      background-color: deeppink;
     }
   }
+}
 </style>

@@ -3,6 +3,10 @@ section.books
   Book.books__item(
     v-for="item in items"
     :title="item.name"
+    :author="item.author"
+    :description="item.description"
+    :year="item.year"
+    :image="item.image"
   )
 </template>
 
@@ -15,21 +19,21 @@ export default {
   },
   components: {
     Book
-  },
+  }
 }
 </script>
 
 <style lang="scss">
-  .books {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+.books {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 
-    &__item {
-      display: block;
-      width: 32%;
-      margin-right: 10px;
-      margin-bottom: 10px;
-    }
+  &__item {
+    display: block;
+    width: 32%;
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
+}
 </style>

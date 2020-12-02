@@ -11,6 +11,7 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "pug": "^3.0.0",
+    "style-loader": "^2.0.0",
     "vue": "^3.0.0",
     "vue-axios": "^3.2.0"
   },
@@ -25,7 +26,8 @@
     "node-sass": "^5.0.0",
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^10.1.0"
+    "sass-loader": "^10.1.0",
+    "style-resources-loader": "^1.4.1"
   },
   "eslintConfig": {
     "root": true,
