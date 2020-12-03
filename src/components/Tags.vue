@@ -35,6 +35,7 @@ export default {
   &__wrapper {
     width: 100%;
     display: flex;
+    justify-content: center;
   }
 
   &__item {

@@ -26,14 +26,18 @@ export default {
 <style lang="scss">
 .books {
   width: 100%;
+  min-height: 360px;
   display: flex;
   flex-wrap: wrap;
 
   &__item {
     display: block;
-    width: 32%;
-    margin-right: 10px;
+    width: calc(100% / 3);
     margin-bottom: 10px;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
   }
 }
 </style>

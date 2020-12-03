@@ -1,12 +1,13 @@
 <template lang="pug">
 div.book
-  div.book__picture
-    img(:src="image", :alt="title")
-  div.book__info
-    h3.book__title {{title}}
-    span.book__description {{sliceDesc}}
-    span.book__author {{author}}
-    span.book__year {{year}}
+  div.book__wrapper
+    div.book__picture
+      img(:src="image", :alt="title")
+    div.book__info
+      h3.book__title {{title}}
+      span.book__description {{sliceDesc}}
+      span.book__author {{author}}
+      span.book__year {{year}}
 </template>
 
 <script>
@@ -29,7 +30,7 @@ export default {
   },
   methods: {
     textSlice() {
-      const size = 120;
+      const size = 100;
       const bookDesc = this.description;
 
       if (bookDesc.length > size) {
@@ -42,9 +43,14 @@ export default {
 
 <style lang="scss">
 .book {
-  border-radius: 10px;
-  border: 1px solid black;
-  overflow: hidden;
+  padding: 5px;
+
+  &__wrapper {
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid black;
+    overflow: hidden;
+  }
 
   &__picture {
     width: 100%;
