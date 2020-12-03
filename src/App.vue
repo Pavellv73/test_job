@@ -42,7 +42,6 @@ export default {
   },
   mounted() {
     this.isLoading = true;
-    console.log(this, 'mounted');
     Promise.all([this.getTags()])
         .then(values => {
           this.categories = values[0].data.data.list;
@@ -54,12 +53,6 @@ export default {
           console.log(error, "error promise tags");
         });
   },
-  // computed: {
-  //   updateBooks: function() {
-  //     return console.log('updateBooks');
-  //     // return this.getBooks();
-  //   }
-  // },
   methods: {
     getTags() {
       return axios.post(
@@ -69,7 +62,6 @@ export default {
     },
     getBooks(tags) {
       this.isLoading = true;
-
       let idArray = [];
       if (tags.length > 1) {
         tags.forEach(i => {
@@ -85,7 +77,7 @@ export default {
       })
           .then(values => {
             this.books = values.data.data.list;
-            this.counterBooks = values[0].data.data.list.length;
+            this.counterBooks = values.data.data.list.length;
             this.isLoading = false;
           })
           .catch(error => {
@@ -95,6 +87,7 @@ export default {
     },
     showMore() {
       console.log(this.books, 'books');
+      // this.getBooks();
     }
   }
 }
